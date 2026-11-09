@@ -14,9 +14,6 @@ import appCss from "../styles.css?url";
 import { CommentLayer } from "@/components/comment";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
-import { QDayPreviewProvider } from "@/components/qday-preview-provider";
-import { WalletPreviewProvider } from "@/components/wallet-preview-provider";
-import { AppSplash } from "@/components/splash-screen";
 
 function NotFoundComponent() {
   return (
@@ -82,13 +79,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "theme-color", content: "#f5f7f9", media: "(prefers-color-scheme: light)" },
       { name: "theme-color", content: "#111318", media: "(prefers-color-scheme: dark)" },
-      { title: "Trellis Wallet" },
-      { name: "description", content: "Trellis Wallet — your keys, your crypto." },
-      { name: "author", content: "Trellis Wallet" },
-      { property: "og:title", content: "Trellis Wallet" },
-      { property: "og:description", content: "Trellis Wallet — your keys, your crypto." },
+      { name: "author", content: "Signet" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    // Sets the theme class before first paint so a stored dark preference never flashes light.
+    scripts: [
+      {
+        children: `try{if(localStorage.getItem("trellis-theme")==="dark"){document.documentElement.classList.add("dark");document.documentElement.style.colorScheme="dark"}}catch(e){}`,
+      },
     ],
     links: [
       // Brand kit v4 fonts (Inter Tight, Inter, JetBrains Mono), self-hosted from /public/fonts.
@@ -111,7 +110,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
@@ -130,14 +129,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <ThemeProvider>
-        <AppSplash />
-        <QDayPreviewProvider>
-          <WalletPreviewProvider>
-            <div className="trellis-screen">
-              <Outlet />
-            </div>
-          </WalletPreviewProvider>
-        </QDayPreviewProvider>
+        <Outlet />
         <CommentLayer />
         <Toaster />
       </ThemeProvider>

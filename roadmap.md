@@ -43,3 +43,11 @@
 - [x] Add wallet prerequisite and eight-digit OTP preview through Agentic Payments.
 - [x] Add five sequential setup steps, with manual Passkey and activation previews.
 - [x] Gate TrellisPass creation and bottom navigation; verify restart, logout and layouts.
+
+# Signet landing page
+
+- [x] Remove the mobile wallet preview; keep `/design-kit`.
+- [x] Landing at `/`: nav, hero with lattice and live ledger, three-layer diagram, Agents / SignetPass / Trellis wallet blocks, CLI, partners, closing CTA, footer.
+- [x] Signet lockup (light/dark), sample copy in `src/content/landing.ts`, sample OG image and meta.
+- [x] Light/dark toggle without flash; reduced-motion fallbacks.
+- [ ] Real links, partner logos, legal text and domain-based OG URL (placeholders for now).

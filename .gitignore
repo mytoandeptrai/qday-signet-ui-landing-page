@@ -35,3 +35,8 @@ dist-ssr
 .env
 .env.*
 !.env.example
+
+# Stuff
+.claude/*
+spec/*
+BACKBONE.md

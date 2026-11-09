@@ -142,18 +142,6 @@
   background-image: var(--gradient-hero);
 }
 
-/* Keep the background visible independently of each screen's content height. */
-.trellis-screen {
-  min-height: 100vh;
-  min-height: 100dvh;
-  background-color: var(--background);
-}
-.trellis-screen > div > main {
-  background-image: var(--gradient-mesh);
-  background-attachment: fixed;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-}
 @utility shadow-glow {
   box-shadow: var(--shadow-glow);
 }
@@ -378,39 +366,6 @@
   animation: bar-grow 0.9s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
-/* Page transition: only the screen column moves, so the top bar and splash stay still. */
-.trellis-screen {
-  view-transition-name: trellis-page;
-}
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-}
-@keyframes page-out {
-  to {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
-}
-@keyframes page-in {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-}
-::view-transition-old(trellis-page) {
-  animation: page-out 140ms ease-in both;
-}
-::view-transition-new(trellis-page) {
-  animation: page-in 360ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(trellis-page),
-  ::view-transition-new(trellis-page) {
-    animation: none;
-  }
-}
-
 /* Comment pick mode: crosshair everywhere except the comment UI itself. */
 html.comment-picking *:not([data-comment-ui], [data-comment-ui] *) {
   cursor: crosshair !important;
@@ -426,10 +381,28 @@ html.comment-picking *:not([data-comment-ui], [data-comment-ui] *) {
   }
 }
 
-/* The intro animation is decorative: never show the browser's own play button over it. */
-video.trellis-intro::-webkit-media-controls,
-video.trellis-intro::-webkit-media-controls-start-playback-button,
-video.trellis-intro::-webkit-media-controls-overlay-play-button {
-  display: none !important;
-  -webkit-appearance: none;
+/* Partner marquee: slow drift, paused on hover; a static wrapped list under reduced motion. */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 45s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    width: auto;
+    flex-wrap: wrap;
+    gap: 1rem 2.5rem;
+    animation: none;
+  }
+  .marquee-dup {
+    display: none;
+  }
 }

@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -10,6 +10,8 @@ const ThemeContext = createContext<{ theme: Theme; setTheme: (theme: Theme) => v
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>("light");
+  // The first pass still holds the default; applying it would undo the class set before paint.
+  const firstApply = useRef(true);
   useEffect(() => {
     try {
       const stored = localStorage.getItem("trellis-theme");
@@ -19,6 +21,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
   }, []);
   useEffect(() => {
+    if (firstApply.current) {
+      firstApply.current = false;
+      return;
+    }
     document.documentElement.classList.toggle("dark", theme === "dark");
     document.documentElement.style.colorScheme = theme;
   }, [theme]);

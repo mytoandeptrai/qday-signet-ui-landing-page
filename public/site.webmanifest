@@ -1,6 +1,6 @@
 {
-  "name": "Trellis Wallet",
-  "short_name": "Trellis",
+  "name": "Signet",
+  "short_name": "Signet",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#111318",
