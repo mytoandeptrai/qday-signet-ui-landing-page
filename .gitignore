@@ -40,3 +40,5 @@ dist-ssr
 .claude/*
 spec/*
 BACKBONE.md
+
+.vercel
