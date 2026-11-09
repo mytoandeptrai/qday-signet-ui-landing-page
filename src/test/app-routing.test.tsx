@@ -11,10 +11,23 @@ const matchedRoute = (path: string) => {
   return router.matchRoutes(path).at(-1)?.routeId;
 };
 
-describe("landing-page/AC-1: only the landing and the design kit are routes", () => {
+describe("landing-page/AC-1: the landing, the design kit and the sub-pages are routes", () => {
   it("matches a page of its own for / and /design-kit", () => {
     expect(matchedRoute("/")).toBe("/");
     expect(matchedRoute("/design-kit")).toBe("/design-kit");
+  });
+
+  it.each([
+    ["/company", "/company"],
+    ["/community", "/community"],
+    ["/events", "/events"],
+    ["/blog", "/blog/"],
+    ["/blog/introducing-signetpass", "/blog/$slug"],
+    ["/whitepaper", "/whitepaper"],
+    ["/media", "/media"],
+    ["/brand-kit", "/brand-kit"],
+  ])("matches %s", (path, id) => {
+    expect(matchedRoute(path)).toBe(id);
   });
 });
 

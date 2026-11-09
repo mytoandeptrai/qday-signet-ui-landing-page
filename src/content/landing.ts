@@ -133,10 +133,20 @@ export const landing = {
         ],
       },
       {
+        title: "About",
+        links: [
+          { label: "Company", href: "/company" },
+          { label: "Blog", href: "/blog" },
+          { label: "Events", href: "/events" },
+          { label: "Brand kit", href: "/brand-kit" },
+        ],
+      },
+      {
         title: "Community",
         links: [
           { label: "Discord", href: HASH },
           { label: "GitHub", href: HASH },
+          { label: "Community hub", href: "/community" },
         ],
       },
     ],

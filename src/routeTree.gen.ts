@@ -10,11 +10,34 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BrandKitRouteImport } from './routes/brand-kit'
+import { Route as CommunityRouteImport } from './routes/community'
+import { Route as CompanyRouteImport } from './routes/company'
 import { Route as DesignKitRouteImport } from './routes/design-kit'
+import { Route as EventsRouteImport } from './routes/events'
+import { Route as MediaRouteImport } from './routes/media'
+import { Route as WhitepaperRouteImport } from './routes/whitepaper'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrandKitRoute = BrandKitRouteImport.update({
+  id: '/brand-kit',
+  path: '/brand-kit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityRoute = CommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompanyRoute = CompanyRouteImport.update({
+  id: '/company',
+  path: '/company',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DesignKitRoute = DesignKitRouteImport.update({
@@ -22,31 +45,119 @@ const DesignKitRoute = DesignKitRouteImport.update({
   path: '/design-kit',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MediaRoute = MediaRouteImport.update({
+  id: '/media',
+  path: '/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WhitepaperRoute = WhitepaperRouteImport.update({
+  id: '/whitepaper',
+  path: '/whitepaper',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/brand-kit': typeof BrandKitRoute
+  '/community': typeof CommunityRoute
+  '/company': typeof CompanyRoute
   '/design-kit': typeof DesignKitRoute
+  '/events': typeof EventsRoute
+  '/media': typeof MediaRoute
+  '/whitepaper': typeof WhitepaperRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/brand-kit': typeof BrandKitRoute
+  '/community': typeof CommunityRoute
+  '/company': typeof CompanyRoute
   '/design-kit': typeof DesignKitRoute
+  '/events': typeof EventsRoute
+  '/media': typeof MediaRoute
+  '/whitepaper': typeof WhitepaperRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/brand-kit': typeof BrandKitRoute
+  '/community': typeof CommunityRoute
+  '/company': typeof CompanyRoute
   '/design-kit': typeof DesignKitRoute
+  '/events': typeof EventsRoute
+  '/media': typeof MediaRoute
+  '/whitepaper': typeof WhitepaperRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/design-kit'
+  fullPaths:
+    | '/'
+    | '/brand-kit'
+    | '/community'
+    | '/company'
+    | '/design-kit'
+    | '/events'
+    | '/media'
+    | '/whitepaper'
+    | '/blog/$slug'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/design-kit'
-  id: '__root__' | '/' | '/design-kit'
+  to:
+    | '/'
+    | '/brand-kit'
+    | '/community'
+    | '/company'
+    | '/design-kit'
+    | '/events'
+    | '/media'
+    | '/whitepaper'
+    | '/blog/$slug'
+    | '/blog'
+  id:
+    | '__root__'
+    | '/'
+    | '/brand-kit'
+    | '/community'
+    | '/company'
+    | '/design-kit'
+    | '/events'
+    | '/media'
+    | '/whitepaper'
+    | '/blog/$slug'
+    | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BrandKitRoute: typeof BrandKitRoute
+  CommunityRoute: typeof CommunityRoute
+  CompanyRoute: typeof CompanyRoute
   DesignKitRoute: typeof DesignKitRoute
+  EventsRoute: typeof EventsRoute
+  MediaRoute: typeof MediaRoute
+  WhitepaperRoute: typeof WhitepaperRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +169,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/brand-kit': {
+      id: '/brand-kit'
+      path: '/brand-kit'
+      fullPath: '/brand-kit'
+      preLoaderRoute: typeof BrandKitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community': {
+      id: '/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/company': {
+      id: '/company'
+      path: '/company'
+      fullPath: '/company'
+      preLoaderRoute: typeof CompanyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/design-kit': {
       id: '/design-kit'
       path: '/design-kit'
@@ -65,12 +197,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DesignKitRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/media': {
+      id: '/media'
+      path: '/media'
+      fullPath: '/media'
+      preLoaderRoute: typeof MediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/whitepaper': {
+      id: '/whitepaper'
+      path: '/whitepaper'
+      fullPath: '/whitepaper'
+      preLoaderRoute: typeof WhitepaperRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BrandKitRoute: BrandKitRoute,
+  CommunityRoute: CommunityRoute,
+  CompanyRoute: CompanyRoute,
   DesignKitRoute: DesignKitRoute,
+  EventsRoute: EventsRoute,
+  MediaRoute: MediaRoute,
+  WhitepaperRoute: WhitepaperRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

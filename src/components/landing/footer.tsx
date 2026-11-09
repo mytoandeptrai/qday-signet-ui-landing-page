@@ -1,3 +1,4 @@
+import { AppLink } from "@/components/app-link";
 import { SignetLockup } from "@/components/signet-lockup";
 import { Button } from "@/components/ui/button";
 import { landing } from "@/content/landing";
@@ -16,17 +17,22 @@ export function Footer() {
         </Button>
       </section>
       <footer className="border-t border-border">
-        <div className="mx-auto grid max-w-[1200px] gap-10 px-4 py-10 md:py-14 md:grid-cols-[1.4fr_repeat(3,1fr)] md:px-8">
-          <SignetLockup />
+        <div className="mx-auto grid max-w-[1200px] gap-10 px-4 py-10 md:py-14 md:grid-cols-[1.4fr_repeat(4,1fr)] md:px-8">
+          <AppLink href="/" aria-label="Signet home">
+            <SignetLockup />
+          </AppLink>
           {footer.columns.map((c) => (
             <nav key={c.title} aria-label={c.title}>
               <p className="text-sm text-muted-foreground">{c.title}</p>
               <ul className="mt-3 space-y-2">
                 {c.links.map((l) => (
                   <li key={l.label}>
-                    <a href={l.href} className="text-[15px] text-foreground hover:text-primary">
+                    <AppLink
+                      href={l.href}
+                      className="text-[15px] text-foreground hover:text-primary"
+                    >
                       {l.label}
-                    </a>
+                    </AppLink>
                   </li>
                 ))}
               </ul>
@@ -38,9 +44,9 @@ export function Footer() {
           <ul className="flex gap-6">
             {footer.legal.links.map((l) => (
               <li key={l.label}>
-                <a href={l.href} className="hover:text-foreground">
+                <AppLink href={l.href} className="hover:text-foreground">
                   {l.label}
-                </a>
+                </AppLink>
               </li>
             ))}
           </ul>
