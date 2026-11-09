@@ -70,7 +70,7 @@ function config() {
   if (!token) return null;
   return {
     token,
-    repo: process.env["GITHUB_REPO"]?.trim() || "michael-pqalabs/qday-trellis-ui-kit",
+    repo: process.env["GITHUB_REPO"]?.trim() || "mytoandeptrai/qday-signet-ui-landing-page",
     api: process.env["GITHUB_API_URL"]?.trim() || "https://api.github.com",
   };
 }

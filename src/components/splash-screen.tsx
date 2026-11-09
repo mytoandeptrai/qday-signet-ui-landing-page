@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import logo from "@/assets/trellis-app-icon.svg";
+// Served from /public so the favicon and the in-page logo share one file.
+const logo = "/icon-blue.svg";
 import { cn } from "@/lib/utils";
 
 /** Shortest time the launch splash stays up, so it never flashes by. */

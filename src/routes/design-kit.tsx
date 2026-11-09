@@ -15,7 +15,8 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { SignetLockup } from "@/components/signet-lockup";
-import logo from "@/assets/trellis-app-icon.svg";
+// Served from /public so the favicon and the in-page logo share one file.
+const logo = "/icon-blue.svg";
 import { useTheme } from "@/components/theme-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -551,7 +552,7 @@ function DesignKit() {
           <div className="grid grid-cols-2 gap-4">
             <div className="grid aspect-square place-items-center rounded-lg border bg-card">
               {imageVisible ? (
-                <img src={logo} alt="Trellis Wallet app icon" className="h-24 w-24" />
+                <img src={logo} alt="Signet app icon" className="h-24 w-24" />
               ) : (
                 <div className="flex flex-col items-center gap-2 text-muted-foreground">
                   <ImageOff className="h-8 w-8" />
@@ -561,7 +562,7 @@ function DesignKit() {
             </div>
             <div className="flex flex-col justify-center gap-4">
               <Avatar className="h-12 w-12">
-                <AvatarImage src={logo} alt="Trellis" />
+                <AvatarImage src={logo} alt="Signet" />
                 <AvatarFallback>TW</AvatarFallback>
               </Avatar>
               <Avatar className="h-12 w-12">
