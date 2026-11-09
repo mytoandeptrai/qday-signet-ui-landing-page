@@ -101,16 +101,16 @@ import {
 export const Route = createFileRoute("/design-kit")({
   head: () => ({
     meta: [
-      { title: "Design Kit — Trellis Wallet" },
+      { title: "Design Kit — Signet" },
       {
         name: "description",
         content:
-          "The Trellis Wallet component library in light and dark: buttons, forms, tables, dialogs and loading states.",
+          "The Signet component library in light and dark: buttons, forms, tables, dialogs and loading states.",
       },
-      { property: "og:title", content: "Design Kit — Trellis Wallet" },
+      { property: "og:title", content: "Design Kit — Signet" },
       {
         property: "og:description",
-        content: "Explore Trellis Wallet's blue design system and interactive component examples.",
+        content: "Explore Signet's blue design system and interactive component examples.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -463,7 +463,7 @@ function DesignKit() {
                 <DialogHeader>
                   <DialogTitle>Wallet preview</DialogTitle>
                   <DialogDescription>
-                    A sample dialog from the Trellis design kit.
+                    A sample dialog from the Signet design kit.
                   </DialogDescription>
                 </DialogHeader>
                 <div className="flex items-center gap-3 py-3">
@@ -663,7 +663,7 @@ function DesignKit() {
           </p>
         </Section>
         <footer className="border-t border-divider pt-5 text-xs text-muted-foreground">
-          Trellis Wallet · Component library
+          Signet · Component library
         </footer>
       </main>
     </div>

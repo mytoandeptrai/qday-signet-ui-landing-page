@@ -47,7 +47,7 @@ export function SplashScreen({
           />
         </div>
         <h1 className="animate-fade-up mt-8 font-display text-2xl font-semibold tracking-tight">
-          Trellis <span className="text-accent">Wallet</span>
+          Signet
         </h1>
         <p className="animate-fade-up mt-1.5 text-sm text-muted-foreground">Self-custody on QDay</p>
       </div>
