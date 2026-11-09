@@ -462,9 +462,7 @@ function DesignKit() {
               <DialogContent>
                 <DialogHeader>
                   <DialogTitle>Wallet preview</DialogTitle>
-                  <DialogDescription>
-                    A sample dialog from the Signet design kit.
-                  </DialogDescription>
+                  <DialogDescription>A sample dialog from the Signet design kit.</DialogDescription>
                 </DialogHeader>
                 <div className="flex items-center gap-3 py-3">
                   <Wallet className="text-primary" />
