@@ -90,6 +90,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     links: [
+      // The latin subsets the first screen uses, fetched in parallel with the CSS so the
+      // fallback font is never painted first (a swap reflows the hero heading on every reload).
+      ...[
+        "intertight/intertight-002.woff2",
+        "inter/inter-001.woff2",
+        "jetbrainsmono/jetbrainsmono-002.woff2",
+      ].map((file) => ({
+        rel: "preload",
+        href: `/fonts/${file}`,
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous" as const,
+      })),
       // Brand kit v4 fonts (Inter Tight, Inter, JetBrains Mono), self-hosted from /public/fonts.
       { rel: "stylesheet", href: "/fonts/fonts.css" },
       {

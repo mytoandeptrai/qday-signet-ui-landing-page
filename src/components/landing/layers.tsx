@@ -3,31 +3,28 @@ import {
   AnimatePresence,
   motion,
   useMotionValueEvent,
-  useReducedMotion,
   useScroll,
   useTransform,
 } from "motion/react";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { useMounted } from "@/hooks/use-mounted";
 import { landing } from "@/content/landing";
 
 const { id, title, body, layers } = landing.how;
 const { features } = landing;
 
 /** One isometric plate of the lattice. Shared by the pinned and flat diagrams. */
-function Plate({ stroke = "var(--border)" }: { stroke?: string }) {
+function Plate({ uid, stroke = "var(--border)" }: { uid: string; stroke?: string }) {
   return (
     <>
       <defs>
-        <pattern id="plate-lattice" width="24" height="24" patternUnits="userSpaceOnUse">
+        <pattern id={`${uid}-lattice`} width="24" height="24" patternUnits="userSpaceOnUse">
           <path d="M0 0L24 24M24 0L0 24" stroke="var(--border)" strokeWidth="1" fill="none" />
         </pattern>
-        <clipPath id="plate-clip">
+        <clipPath id={`${uid}-clip`}>
           <path d="M200 0L400 100L200 200L0 100Z" />
         </clipPath>
       </defs>
       <path d="M200 0L400 100L200 200L0 100Z" fill="var(--card)" />
-      <rect width="400" height="200" fill="url(#plate-lattice)" clipPath="url(#plate-clip)" />
+      <rect width="400" height="200" fill={`url(#${uid}-lattice)`} clipPath={`url(#${uid}-clip)`} />
       <path
         d="M200 0L400 100L200 200L0 100Z"
         fill="none"
@@ -57,9 +54,8 @@ function Heading() {
 function LayersFlat() {
   return (
     <section
-      id={id}
       data-layers="flat"
-      className="mx-auto max-w-[1200px] px-4 py-12 md:px-8 md:py-20"
+      className="mx-auto max-w-[1200px] px-4 py-12 md:px-8 md:py-20 md:[@media(prefers-reduced-motion:no-preference)]:hidden"
     >
       <Heading />
       <ol className="mt-8 flex flex-col md:mt-12">
@@ -77,7 +73,7 @@ function LayersFlat() {
               <div className="w-full rounded-2xl border border-border bg-card p-5">
                 <div className="flex items-center gap-4">
                   <svg viewBox="0 0 400 200" className="w-20 shrink-0" aria-hidden="true">
-                    <Plate stroke="var(--brand)" />
+                    <Plate uid="flat" stroke="var(--brand)" />
                   </svg>
                   <div className="min-w-0">
                     <p className="font-display text-xl leading-tight text-foreground">{l.label}</p>
@@ -125,7 +121,7 @@ function PinnedLayer({
     <>
       <motion.g style={{ y }}>
         <svg x="60" width="400" height="200" viewBox="0 0 400 200">
-          <Plate stroke={stroke} />
+          <Plate uid="pinned" stroke={stroke} />
         </svg>
       </motion.g>
       <motion.g style={{ y, opacity: labelOpacity }}>
@@ -196,7 +192,11 @@ function LayersPinned() {
   const stageShift = useTransform(scrollYProgress, [0, 1], [0, -72]);
 
   return (
-    <section id={id} ref={ref} data-layers="pinned" className="relative h-[250vh]">
+    <section
+      ref={ref}
+      data-layers="pinned"
+      className="relative h-[250vh] max-md:hidden [@media(prefers-reduced-motion:reduce)]:hidden"
+    >
       <div className="sticky top-0 flex h-dvh items-center overflow-hidden">
         {/* A lattice floor under the whole stage; it drifts slowly against the scroll. */}
         <motion.svg
@@ -205,11 +205,11 @@ function LayersPinned() {
           className="absolute -inset-x-0 -top-20 h-[calc(100%+10rem)] w-full [mask-image:radial-gradient(ellipse_65%_60%_at_65%_50%,black,transparent)]"
         >
           <defs>
-            <pattern id="stage-lattice" width="48" height="48" patternUnits="userSpaceOnUse">
+            <pattern id="pinned-stage-lattice" width="48" height="48" patternUnits="userSpaceOnUse">
               <path d="M0 0L48 48M48 0L0 48" stroke="var(--border)" strokeWidth="1" fill="none" />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#stage-lattice)" />
+          <rect width="100%" height="100%" fill="url(#pinned-stage-lattice)" />
         </motion.svg>
         <div className="relative mx-auto grid w-full max-w-[1200px] grid-cols-[minmax(0,1fr)] items-center gap-8 px-8 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
@@ -247,10 +247,16 @@ function LayersPinned() {
   );
 }
 
+/**
+ * Both diagrams are in the HTML and CSS picks one (phones and reduced motion get the flat stack),
+ * so the page has its final height before hydration. Swapping them in JS after mount resized the
+ * page above everything below it and broke scroll restoration on reload.
+ */
 export function Layers() {
-  const reduce = useReducedMotion();
-  const isMobile = useIsMobile();
-  const mounted = useMounted();
-  // Server and first client render are flat; the pinned diagram only mounts once both checks pass.
-  return mounted && reduce === false && !isMobile ? <LayersPinned /> : <LayersFlat />;
+  return (
+    <div id={id}>
+      <LayersFlat />
+      <LayersPinned />
+    </div>
+  );
 }

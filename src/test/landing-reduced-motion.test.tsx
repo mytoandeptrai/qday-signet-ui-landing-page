@@ -19,11 +19,17 @@ afterEach(() => {
 });
 
 describe("landing-page/AC-9: reduced motion", () => {
-  it("renders the layers flat, without the pinned scroll section", async () => {
+  it("hides the pinned scroll section and keeps the flat layers", async () => {
     const { Layers } = await import("@/components/landing/layers");
     const { container } = render(<Layers />);
-    await vi.waitFor(() => expect(container.querySelector("[data-layers]")).not.toBeNull());
-    expect(container.querySelector("[data-layers]")).toHaveAttribute("data-layers", "flat");
+    // The choice is CSS (so the page height is right before hydration); jsdom has no stylesheet,
+    // so check the classes that carry it.
+    expect(container.querySelector("[data-layers='pinned']")?.className).toContain(
+      "[@media(prefers-reduced-motion:reduce)]:hidden",
+    );
+    expect(container.querySelector("[data-layers='flat']")?.className).not.toContain(
+      "reduced-motion:reduce",
+    );
   });
 
   it("keeps the ledger still", async () => {

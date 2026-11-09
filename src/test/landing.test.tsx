@@ -40,7 +40,8 @@ describe("landing-page/AC-3: every section renders", () => {
       "Start from the terminal",
       landing.cta.title,
     ]) {
-      expect(screen.getByRole("heading", { name })).toBeInTheDocument();
+      // Both layer diagrams are in the DOM (CSS picks one), so a name can match more than once.
+      expect(screen.getAllByRole("heading", { name }).length).toBeGreaterThan(0);
     }
     expect(screen.queryByText("Backed by")).not.toBeInTheDocument();
     expect(screen.getByText("Works with")).toBeInTheDocument();
