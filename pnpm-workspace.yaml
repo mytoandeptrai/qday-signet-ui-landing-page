@@ -1,0 +1,2 @@
+# Supply-chain guard (moved from bunfig.toml): skip package versions published less than a day ago.
+minimumReleaseAge: 1440
