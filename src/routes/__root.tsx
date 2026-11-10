@@ -12,6 +12,7 @@ import type { ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { CommentLayer } from "@/components/comment";
+import { ScrollToTopContainer } from "@/modules/site-shell";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -144,6 +145,7 @@ function RootComponent() {
       <ThemeProvider>
         <Outlet />
         <CommentLayer />
+        <ScrollToTopContainer />
         <Toaster />
       </ThemeProvider>
     </QueryClientProvider>

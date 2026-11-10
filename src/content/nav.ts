@@ -37,3 +37,5 @@ export const aboutMenu: { label: string; groups: NavGroup[] } = {
     },
   ],
 };
+
+export const scrollTop = { label: "Back to top" };

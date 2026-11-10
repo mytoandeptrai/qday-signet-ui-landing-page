@@ -1,1 +1,6 @@
-export { FooterContainer, NavContainer, PageShellContainer } from "./containers";
+export {
+  FooterContainer,
+  NavContainer,
+  PageShellContainer,
+  ScrollToTopContainer,
+} from "./containers";
