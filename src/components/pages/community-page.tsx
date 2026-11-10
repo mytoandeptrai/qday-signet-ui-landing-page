@@ -1,5 +1,5 @@
 import { AnimationContainer } from "@/components/animation-container";
-import { PageShell } from "@/components/site/page-shell";
+import { PageShellContainer } from "@/modules/site-shell";
 import { PageHero, Panel, Section } from "@/components/site-blocks";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -8,7 +8,7 @@ import { community } from "@/content/pages/community";
 export function CommunityPage() {
   const { hero, channels, programs, ambassadors } = community;
   return (
-    <PageShell>
+    <PageShellContainer>
       <PageHero {...hero} />
       <Section bare className="py-6 md:py-8">
         <ul className="grid gap-4 md:grid-cols-3">
@@ -64,6 +64,6 @@ export function CommunityPage() {
           ))}
         </ul>
       </Section>
-    </PageShell>
+    </PageShellContainer>
   );
 }

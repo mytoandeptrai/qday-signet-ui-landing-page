@@ -1,11 +1,14 @@
 import { AppLink } from "@/components/app-link";
 import { SignetLockup } from "@/components/signet-lockup";
 import { Button } from "@/components/ui/button";
-import { landing } from "@/content/landing";
+import type { Landing } from "@/content/landing";
 
-const { cta, footer } = landing;
+type FooterUiProps = {
+  cta: Landing["cta"];
+  footer: Landing["footer"];
+};
 
-export function Footer() {
+const FooterUi = ({ cta, footer }: FooterUiProps) => {
   return (
     <>
       <section className="mx-auto max-w-[1200px] px-4 py-14 md:px-8 md:py-24">
@@ -54,4 +57,6 @@ export function Footer() {
       </footer>
     </>
   );
-}
+};
+
+export default FooterUi;

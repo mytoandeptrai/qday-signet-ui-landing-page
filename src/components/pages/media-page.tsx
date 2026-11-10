@@ -1,6 +1,6 @@
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useState } from "react";
-import { PageShell } from "@/components/site/page-shell";
+import { PageShellContainer } from "@/modules/site-shell";
 import { PageHero, Panel, Section } from "@/components/site-blocks";
 import { formatDate } from "@/utils";
 import { Badge } from "@/components/ui/badge";
@@ -49,7 +49,7 @@ export function MediaPage({ items }: { items: MediaItem[] }) {
   const reduce = useReducedMotion();
   const shown = type === allLabel ? items : items.filter((i) => i.type === type);
   return (
-    <PageShell>
+    <PageShellContainer>
       <PageHero {...hero} />
       <Section className="py-6 md:py-8">
         <ToggleGroup
@@ -116,6 +116,6 @@ export function MediaPage({ items }: { items: MediaItem[] }) {
           </a>
         </div>
       </Section>
-    </PageShell>
+    </PageShellContainer>
   );
 }

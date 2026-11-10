@@ -1,7 +1,7 @@
 import { AnimationContainer } from "@/components/animation-container";
 import lockupDark from "@/assets/lockup-blue-on-dark.svg";
 import lockupLight from "@/assets/lockup-blue.svg";
-import { PageShell } from "@/components/site/page-shell";
+import { PageShellContainer } from "@/modules/site-shell";
 import { PageHero, Panel, Section } from "@/components/site-blocks";
 import { Button } from "@/components/ui/button";
 import { brandKit } from "@/content/pages/brand-kit";
@@ -25,7 +25,7 @@ function LogoTile({ children, dark }: { children: React.ReactNode; dark?: boolea
 export function BrandKitPage() {
   const { hero, download, logos, colors, type, rules } = brandKit;
   return (
-    <PageShell>
+    <PageShellContainer>
       <PageHero {...hero}>
         <Button asChild className="mt-8 rounded-full">
           <a href={download.href}>{download.label}</a>
@@ -142,6 +142,6 @@ export function BrandKitPage() {
           ))}
         </div>
       </Section>
-    </PageShell>
+    </PageShellContainer>
   );
 }

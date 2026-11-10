@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { PageShell } from "@/components/site/page-shell";
+import { PageShellContainer } from "@/modules/site-shell";
 import { formatDate } from "@/utils";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -15,7 +15,7 @@ import { blogPage, type Post } from "@/content/pages/blog";
 
 export function BlogPostPage({ post }: { post: Post }) {
   return (
-    <PageShell>
+    <PageShellContainer>
       <article className="mx-auto max-w-[720px] px-4 py-10 md:px-8 md:py-20">
         <Breadcrumb>
           <BreadcrumbList>
@@ -58,6 +58,6 @@ export function BlogPostPage({ post }: { post: Post }) {
           ))}
         </div>
       </article>
-    </PageShell>
+    </PageShellContainer>
   );
 }

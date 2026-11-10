@@ -1,6 +1,6 @@
 import { AnimationContainer } from "@/components/animation-container";
 import { CountUp } from "@/components/count-up";
-import { PageShell } from "@/components/site/page-shell";
+import { PageShellContainer } from "@/modules/site-shell";
 import { PageHero, Panel, Section } from "@/components/site-blocks";
 import {
   Accordion,
@@ -16,7 +16,7 @@ import { company } from "@/content/pages/company";
 export function CompanyPage() {
   const { hero, stats, values, timeline, team, careers } = company;
   return (
-    <PageShell>
+    <PageShellContainer>
       <PageHero {...hero} />
       <Section aria-label="Signet in numbers" className="py-6 md:py-8">
         <dl className="grid grid-cols-2 gap-6 border-y border-divider py-8 md:grid-cols-4">
@@ -102,6 +102,6 @@ export function CompanyPage() {
           ))}
         </Accordion>
       </Section>
-    </PageShell>
+    </PageShellContainer>
   );
 }

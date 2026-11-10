@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimationContainer } from "@/components/animation-container";
-import { PageShell } from "@/components/site/page-shell";
+import { PageShellContainer } from "@/modules/site-shell";
 import { PageHero, Section } from "@/components/site-blocks";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -40,7 +40,7 @@ export function WhitepaperPage() {
   const version = versions.find((v) => v.id === versionId) ?? versions[0];
   const active = useActiveSection(ids);
   return (
-    <PageShell>
+    <PageShellContainer>
       <PageHero {...hero}>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <Select value={versionId} onValueChange={setVersionId}>
@@ -107,6 +107,6 @@ export function WhitepaperPage() {
           </div>
         </div>{" "}
       </Section>
-    </PageShell>
+    </PageShellContainer>
   );
 }

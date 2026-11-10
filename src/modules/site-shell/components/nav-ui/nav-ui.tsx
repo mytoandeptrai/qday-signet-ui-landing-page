@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { Menu } from "lucide-react";
-import { motion, useMotionValueEvent, useReducedMotion, useScroll } from "motion/react";
+import { motion } from "motion/react";
 import { AppLink } from "@/components/app-link";
 import { SignetLockup } from "@/components/signet-lockup";
 import { ThemeToggle } from "@/components/theme-provider";
@@ -14,30 +13,24 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { landing } from "@/content/landing";
-import { aboutMenu } from "@/content/nav";
+import type { Landing } from "@/content/landing";
+import type { aboutMenu as aboutMenuContent } from "@/content/nav";
 import { cn } from "@/lib/utils";
 
-const { links, cta } = landing.nav;
+type NavUiProps = {
+  links: Landing["nav"]["links"];
+  cta: Landing["nav"]["cta"];
+  aboutMenu: typeof aboutMenuContent;
+  reduce: boolean | null;
+  scrolled: boolean;
+  hidden: boolean;
+  onShow: () => void;
+};
 
-export function Nav() {
-  const reduce = useReducedMotion();
-  const { scrollY } = useScroll();
-  const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
-
-  useMotionValueEvent(scrollY, "change", (y) => {
-    const delta = y - (scrollY.getPrevious() ?? 0);
-    setScrolled(y > 8);
-    // Hide while reading downward, show on any upward scroll; small jitters change nothing.
-    // Reduced motion only changes the background.
-    if (reduce || y <= 160 || delta < -2) setHidden(false);
-    else if (delta > 2) setHidden(true);
-  });
-
+const NavUi = ({ links, cta, aboutMenu, reduce, scrolled, hidden, onShow }: NavUiProps) => {
   return (
     <motion.header
-      onFocusCapture={() => setHidden(false)}
+      onFocusCapture={onShow}
       animate={{ y: hidden ? "-100%" : "0%" }}
       transition={
         reduce ? { duration: 0 } : { type: "spring", stiffness: 380, damping: 36, mass: 0.8 }
@@ -148,4 +141,6 @@ export function Nav() {
       </div>
     </motion.header>
   );
-}
+};
+
+export default NavUi;

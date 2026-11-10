@@ -1,6 +1,6 @@
 import { useReducedMotion, motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
-import { PageShell } from "@/components/site/page-shell";
+import { PageShellContainer } from "@/modules/site-shell";
 import { PageHero, Panel, Section } from "@/components/site-blocks";
 import { formatDate } from "@/utils";
 import { Badge } from "@/components/ui/badge";
@@ -14,7 +14,7 @@ export function EventsPage({ events }: { events: SignetEvent[] }) {
   const reduce = useReducedMotion();
   const shown = events.filter((e) => e.status === status);
   return (
-    <PageShell>
+    <PageShellContainer>
       <PageHero {...hero} />
       <Section className="py-6 md:py-8">
         <Tabs value={status} onValueChange={(v) => setStatus(v as SignetEvent["status"])}>
@@ -59,6 +59,6 @@ export function EventsPage({ events }: { events: SignetEvent[] }) {
           </ul>
         )}
       </Section>
-    </PageShell>
+    </PageShellContainer>
   );
 }
