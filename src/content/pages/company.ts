@@ -47,7 +47,7 @@ export const company = {
     },
   ],
   team: [
-    { name: "Mai Tran", role: "Co-founder, Product", initials: "MT" },
+    { name: "John Tran", role: "Co-founder, Product", initials: "MT" },
     { name: "Jonas Weber", role: "Co-founder, Engineering", initials: "JW" },
     { name: "Priya Nair", role: "Head of Design", initials: "PN" },
     { name: "Luca Bianchi", role: "Protocol engineer", initials: "LB" },

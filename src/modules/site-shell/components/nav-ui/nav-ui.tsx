@@ -57,7 +57,7 @@ const NavUi = ({ links, cta, aboutMenu, reduce, scrolled, hidden, onShow }: NavU
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="h-auto bg-transparent p-0 text-[15px] font-normal text-muted-foreground hover:bg-transparent hover:text-foreground focus:bg-transparent data-[state=open]:bg-transparent data-[state=open]:text-foreground data-[state=open]:hover:bg-transparent">
+                <NavigationMenuTrigger className="h-auto bg-transparent p-0 text-[15px] font-normal text-muted-foreground hover:bg-transparent hover:text-foreground focus:bg-transparent focus:text-foreground data-[state=open]:bg-transparent data-[state=open]:text-foreground data-[state=open]:hover:bg-transparent data-[state=open]:focus:bg-transparent">
                   {aboutMenu.label}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>

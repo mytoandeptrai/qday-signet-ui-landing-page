@@ -56,7 +56,7 @@ export const mediaPage = {
     {
       id: "m3",
       type: "Podcast",
-      title: "Agents and money, with Mai Tran",
+      title: "Agents and money, with John Tran",
       source: "Signet Podcast",
       date: "2026-10-14",
       summary: "What it takes to let software spend on your behalf.",
