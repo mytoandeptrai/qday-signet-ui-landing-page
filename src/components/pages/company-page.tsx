@@ -1,7 +1,7 @@
 import { AnimationContainer } from "@/components/animation-container";
 import { CountUp } from "@/components/count-up";
 import { PageShell } from "@/components/site/page-shell";
-import { Panel, PageHero, Section } from "@/components/site/blocks";
+import { PageHero, Panel, Section } from "@/components/site-blocks";
 import {
   Accordion,
   AccordionContent,

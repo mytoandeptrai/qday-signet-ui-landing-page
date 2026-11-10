@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BlogPage } from "@/components/pages/blog-page";
-import { pageHead } from "@/components/site/blocks";
+import { pageHead } from "@/utils";
 import { blogPage } from "@/content/pages/blog";
 import { getPosts } from "@/lib/content";
 

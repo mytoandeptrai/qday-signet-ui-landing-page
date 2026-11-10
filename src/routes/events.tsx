@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { EventsPage } from "@/components/pages/events-page";
-import { pageHead } from "@/components/site/blocks";
+import { pageHead } from "@/utils";
 import { eventsPage } from "@/content/pages/events";
 import { getEvents } from "@/lib/content";
 

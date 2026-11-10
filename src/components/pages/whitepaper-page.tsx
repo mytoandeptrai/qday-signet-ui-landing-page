@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimationContainer } from "@/components/animation-container";
 import { PageShell } from "@/components/site/page-shell";
-import { PageHero, Section } from "@/components/site/blocks";
+import { PageHero, Section } from "@/components/site-blocks";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {

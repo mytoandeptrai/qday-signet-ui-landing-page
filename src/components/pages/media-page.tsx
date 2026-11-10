@@ -1,7 +1,8 @@
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useState } from "react";
 import { PageShell } from "@/components/site/page-shell";
-import { PageHero, Panel, Section, formatDate } from "@/components/site/blocks";
+import { PageHero, Panel, Section } from "@/components/site-blocks";
+import { formatDate } from "@/utils";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {

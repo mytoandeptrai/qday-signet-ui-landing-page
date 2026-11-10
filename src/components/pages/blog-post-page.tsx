@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { PageShell } from "@/components/site/page-shell";
-import { formatDate } from "@/components/site/blocks";
+import { formatDate } from "@/utils";
 import { Badge } from "@/components/ui/badge";
 import {
   Breadcrumb,

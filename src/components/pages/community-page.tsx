@@ -1,6 +1,6 @@
 import { AnimationContainer } from "@/components/animation-container";
 import { PageShell } from "@/components/site/page-shell";
-import { Panel, PageHero, Section } from "@/components/site/blocks";
+import { PageHero, Panel, Section } from "@/components/site-blocks";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { community } from "@/content/pages/community";

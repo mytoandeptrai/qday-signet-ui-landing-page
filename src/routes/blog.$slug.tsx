@@ -1,6 +1,6 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { BlogPostPage } from "@/components/pages/blog-post-page";
-import { pageHead } from "@/components/site/blocks";
+import { pageHead } from "@/utils";
 import { getPost } from "@/lib/content";
 
 export const Route = createFileRoute("/blog/$slug")({

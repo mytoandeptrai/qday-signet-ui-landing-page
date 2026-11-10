@@ -2,7 +2,7 @@ import { AnimationContainer } from "@/components/animation-container";
 import lockupDark from "@/assets/lockup-blue-on-dark.svg";
 import lockupLight from "@/assets/lockup-blue.svg";
 import { PageShell } from "@/components/site/page-shell";
-import { PageHero, Panel, Section } from "@/components/site/blocks";
+import { PageHero, Panel, Section } from "@/components/site-blocks";
 import { Button } from "@/components/ui/button";
 import { brandKit } from "@/content/pages/brand-kit";
 
