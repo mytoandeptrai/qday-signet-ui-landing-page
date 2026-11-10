@@ -4,9 +4,9 @@ One-page marketing site for Signet (Agentic Payments); the Trellis wallet is the
 
 ## Routes
 
-- `/`: the landing page (`src/components/landing/*`).
+- `/`: the landing page (`src/modules/landing`).
 - `/design-kit`: component catalogue, kept for review.
-- Sub-pages, reached from the About menu: `/company`, `/community`, `/events`, `/blog`, `/blog/$slug`, `/whitepaper`, `/media`, `/brand-kit`. Components in `src/components/pages/*`, shared frame in `src/components/site/*`.
+- Sub-pages, reached from the About menu: `/company`, `/community`, `/events`, `/blog`, `/blog/$slug`, `/whitepaper`, `/media`, `/brand-kit`. One module each in `src/modules/<page>`, shared frame in `src/modules/site-shell`, shared blocks in `src/components/site-blocks`.
 - Everything else is a 404.
 
 ## Copy and links
