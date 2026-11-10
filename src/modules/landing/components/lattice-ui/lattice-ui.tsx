@@ -1,27 +1,13 @@
-import { useMounted } from "@/hooks/use-mounted";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import { DRAW_SECONDS, NODES, ROUTE } from "../../utils";
 
-/**
- * Hero lattice: a fine diagonal trellis with one payment route (wallet, SignetPass, agent) that
- * draws once on load, then rests with a single small pulse every 8s. Route vertices sit on lattice
- * crossings (multiples of 24 whose x+y is a multiple of 48).
- */
-const ROUTE = "M120 552 L360 312 L504 456 L912 48";
-const NODES = [
-  { x: 120, y: 552, at: 0 },
-  { x: 504, y: 456, at: 0.5 },
-  { x: 912, y: 48, at: 1 },
-];
-const DRAW_SECONDS = 2.4;
+type LatticeUiProps = {
+  animate: boolean;
+  reduce: boolean | null;
+  duration: number;
+};
 
-export function Lattice() {
-  const reduce = useReducedMotion();
-  // Server and first client render must match, so anything that depends on the user's motion
-  // preference waits until after mount. Reduced motion jumps to the end state instead of drawing.
-  const mounted = useMounted();
-  const animate = mounted && reduce === false;
-  const duration = reduce ? 0 : DRAW_SECONDS;
-
+const LatticeUi = ({ animate, reduce, duration }: LatticeUiProps) => {
   return (
     <svg
       aria-hidden="true"
@@ -82,4 +68,6 @@ export function Lattice() {
       )}
     </svg>
   );
-}
+};
+
+export default LatticeUi;

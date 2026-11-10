@@ -1,17 +1,23 @@
+import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
-import { landing } from "@/content/landing";
-import { Lattice } from "./lattice";
-import { Ledger } from "./ledger";
+import type { Landing } from "@/content/landing";
 
-const { title, sub, primaryCta, secondaryCta } = landing.hero;
+type HeroUiProps = {
+  title: Landing["hero"]["title"];
+  sub: Landing["hero"]["sub"];
+  primaryCta: Landing["hero"]["primaryCta"];
+  secondaryCta: Landing["hero"]["secondaryCta"];
+  lattice: ReactNode;
+  ledger: ReactNode;
+};
 
-export function Hero() {
+const HeroUi = ({ title, sub, primaryCta, secondaryCta, lattice, ledger }: HeroUiProps) => {
   return (
     <section
       id="top"
       className="relative flex min-h-[calc(100dvh-4rem)] items-center overflow-hidden"
     >
-      <Lattice />
+      {lattice}
       <div className="relative mx-auto grid w-full max-w-[1200px] grid-cols-[minmax(0,1fr)] gap-x-16 gap-y-8 px-4 py-16 md:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:py-24">
         <h1 className="font-display text-[34px] font-medium leading-[1.05] tracking-[-0.02em] text-foreground sm:text-[49px] lg:col-span-2 lg:text-[76px]">
           {title.map((line) => (
@@ -33,8 +39,10 @@ export function Hero() {
             </Button>
           </div>
         </div>
-        <Ledger />
+        {ledger}
       </div>
     </section>
   );
-}
+};
+
+export default HeroUi;

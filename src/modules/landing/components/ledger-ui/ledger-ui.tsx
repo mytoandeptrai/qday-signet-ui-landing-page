@@ -1,60 +1,33 @@
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { landing } from "@/content/landing";
-
-const { title, unit, budget, endsIn, initial, incoming } = landing.ledger;
-const TICK_MS = 7000;
-const MAX_ROWS = 3;
-
-type Row = { id: number; agent: string; amount: number; to: string };
+import type { RefObject } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import type { Landing } from "@/content/landing";
+import type { LedgerRow } from "../../hooks";
 
 const fmt = (n: number) => n.toFixed(2);
 
-/** True while the element is on screen and the tab is visible. */
-function useActive(ref: React.RefObject<Element | null>) {
-  const [inView, setInView] = useState(true);
-  const [tabVisible, setTabVisible] = useState(true);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || typeof IntersectionObserver === "undefined") return;
-    const io = new IntersectionObserver((entries) =>
-      setInView(entries.some((e) => e.isIntersecting)),
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [ref]);
-  useEffect(() => {
-    const onChange = () => setTabVisible(document.visibilityState === "visible");
-    onChange();
-    document.addEventListener("visibilitychange", onChange);
-    return () => document.removeEventListener("visibilitychange", onChange);
-  }, []);
-  return inView && tabVisible;
-}
+type LedgerUiProps = {
+  containerRef: RefObject<HTMLDivElement | null>;
+  title: Landing["ledger"]["title"];
+  unit: Landing["ledger"]["unit"];
+  budget: Landing["ledger"]["budget"];
+  endsIn: Landing["ledger"]["endsIn"];
+  rows: LedgerRow[];
+  used: number;
+  reduce: boolean | null;
+};
 
-export function Ledger() {
-  const reduce = useReducedMotion();
-  const ref = useRef<HTMLDivElement>(null);
-  const active = useActive(ref);
-  const [rows, setRows] = useState<Row[]>(() => initial.map((r, i) => ({ ...r, id: -i - 1 })));
-  const [used, setUsed] = useState(budget.used);
-  const next = useRef(0);
-
-  useEffect(() => {
-    if (!active || reduce !== false) return;
-    const timer = setInterval(() => {
-      const row = incoming[next.current % incoming.length];
-      if (!row) return;
-      const id = next.current++;
-      setRows((r) => [{ ...row, id }, ...r].slice(0, MAX_ROWS));
-      // Wrap back to the starting balance rather than overrunning the sample budget.
-      setUsed((u) => (u + row.amount > budget.total ? budget.used : u + row.amount));
-    }, TICK_MS);
-    return () => clearInterval(timer);
-  }, [active, reduce]);
-
+const LedgerUi = ({
+  containerRef,
+  title,
+  unit,
+  budget,
+  endsIn,
+  rows,
+  used,
+  reduce,
+}: LedgerUiProps) => {
   return (
-    <div ref={ref} className="rounded-2xl border border-border bg-card p-5 md:p-6">
+    <div ref={containerRef} className="rounded-2xl border border-border bg-card p-5 md:p-6">
       <div className="flex items-baseline justify-between">
         <p className="text-sm text-muted-foreground">{title}</p>
         <p className="text-sm text-muted-foreground">Ends in {endsIn}</p>
@@ -111,4 +84,6 @@ export function Ledger() {
       </ul>
     </div>
   );
-}
+};
+
+export default LedgerUi;

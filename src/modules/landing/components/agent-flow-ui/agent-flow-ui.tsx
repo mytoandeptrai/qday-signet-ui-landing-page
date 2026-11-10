@@ -1,6 +1,5 @@
-import { useRef } from "react";
-import { motion, useInView, useReducedMotion } from "motion/react";
-import { useMounted } from "@/hooks/use-mounted";
+import type { RefObject } from "react";
+import { motion } from "motion/react";
 
 const AGENT_X = 40;
 const PASS_X = 240;
@@ -8,19 +7,20 @@ const WALLET_X = 440;
 const CYCLE = 4.5;
 const PACKETS = 3;
 
+type AgentFlowUiProps = {
+  svgRef: RefObject<SVGSVGElement | null>;
+  run: boolean;
+  reduce: boolean | null;
+};
+
 /**
  * Requests leave the agent, stop at the SignetPass gate, then pass on to the wallet once
  * approved. Runs only while on screen; reduced motion shows the resting diagram.
  */
-export function AgentFlow() {
-  const ref = useRef<SVGSVGElement>(null);
-  const inView = useInView(ref);
-  const reduce = useReducedMotion();
-  const run = useMounted() && inView && reduce === false;
-
+const AgentFlowUi = ({ svgRef, run, reduce }: AgentFlowUiProps) => {
   return (
     <svg
-      ref={ref}
+      ref={svgRef}
       viewBox="0 0 480 150"
       role="img"
       aria-label="Agent requests pass through SignetPass to the wallet"
@@ -106,4 +106,6 @@ export function AgentFlow() {
       ))}
     </svg>
   );
-}
+};
+
+export default AgentFlowUi;

@@ -1,9 +1,14 @@
-import { landing } from "@/content/landing";
+import type { Landing } from "@/content/landing";
 import { cn } from "@/lib/utils";
 
-const { id, title, body, lines } = landing.cli;
+type CliUiProps = {
+  id: Landing["cli"]["id"];
+  title: Landing["cli"]["title"];
+  body: Landing["cli"]["body"];
+  lines: Landing["cli"]["lines"];
+};
 
-export function Cli() {
+const CliUi = ({ id, title, body, lines }: CliUiProps) => {
   return (
     <section id={id} className="mx-auto max-w-[1200px] scroll-mt-16 px-4 py-12 md:px-8 md:py-20">
       <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-10 md:grid-cols-2 md:gap-24">
@@ -37,4 +42,6 @@ export function Cli() {
       </div>
     </section>
   );
-}
+};
+
+export default CliUi;

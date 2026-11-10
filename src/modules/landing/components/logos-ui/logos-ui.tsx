@@ -1,6 +1,4 @@
-import { landing } from "@/content/landing";
-
-const { worksWith } = landing;
+import type { Landing } from "@/content/landing";
 
 /** Invented wordmark: a small lattice glyph plus the name. Swap for real SVG logos later. */
 function Wordmark({ name }: { name: string }) {
@@ -21,7 +19,11 @@ function Wordmark({ name }: { name: string }) {
   );
 }
 
-export function Logos() {
+type LogosUiProps = {
+  worksWith: Landing["worksWith"];
+};
+
+const LogosUi = ({ worksWith }: LogosUiProps) => {
   return (
     <section className="mx-auto max-w-[1200px] px-4 py-10 md:px-8 md:py-16">
       <p className="text-sm text-muted-foreground">{worksWith.title}</p>
@@ -41,4 +43,6 @@ export function Logos() {
       </div>
     </section>
   );
-}
+};
+
+export default LogosUi;

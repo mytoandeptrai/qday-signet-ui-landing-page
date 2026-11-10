@@ -1,8 +1,6 @@
 import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { LandingPage } from "@/components/landing/landing-page";
-import { Ledger } from "@/components/landing/ledger";
-import { Hero } from "@/components/landing/hero";
+import { HeroContainer, LandingContainer, LedgerContainer } from "@/modules/landing/containers";
 import { SignetLockup } from "@/components/signet-lockup";
 import { ThemeProvider } from "@/components/theme-provider";
 import { landing } from "@/content/landing";
@@ -17,7 +15,7 @@ afterEach(() => {
 const renderLanding = () =>
   render(
     <ThemeProvider>
-      <LandingPage />
+      <LandingContainer />
     </ThemeProvider>,
   );
 
@@ -61,7 +59,7 @@ describe("landing-page/AC-4: copy comes from content", () => {
     const original = [...landing.hero.title];
     landing.hero.title.splice(0, 2, "A new headline.", "Second line.");
     try {
-      render(<Hero />);
+      render(<HeroContainer />);
       expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
         "A new headline.Second line.",
       );
@@ -115,14 +113,14 @@ describe("landing-page/AC-10: ledger pauses in the background", () => {
   afterEach(() => setVisibility("visible"));
 
   it("adds a payment while visible", () => {
-    render(<Ledger />);
+    render(<LedgerContainer />);
     expect(screen.getByTestId("ledger-budget")).toHaveTextContent("42.10");
     act(() => vi.advanceTimersByTime(7000));
     expect(screen.getByTestId("ledger-budget")).toHaveTextContent("42.70");
   });
 
   it("adds nothing once the tab is hidden", () => {
-    render(<Ledger />);
+    render(<LedgerContainer />);
     act(() => setVisibility("hidden"));
     act(() => vi.advanceTimersByTime(10_000));
     expect(screen.getByTestId("ledger-budget")).toHaveTextContent("42.10");

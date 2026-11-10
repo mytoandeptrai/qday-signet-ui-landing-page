@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { LandingPage } from "@/components/landing/landing-page";
+import { LandingContainer } from "@/modules/landing";
 import { landing } from "@/content/landing";
 
 const { title, description, ogImage } = landing.meta;
@@ -17,5 +17,5 @@ export const Route = createFileRoute("/")({
       { name: "twitter:image", content: ogImage },
     ],
   }),
-  component: LandingPage,
+  component: LandingContainer,
 });
