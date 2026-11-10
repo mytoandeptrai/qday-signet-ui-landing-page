@@ -1,5 +1,5 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { BlogPostPage } from "@/components/pages/blog-post-page";
+import { BlogPostContainer } from "@/modules/blog";
 import { pageHead } from "@/utils";
 import { getPost } from "@/lib/content";
 
@@ -14,7 +14,5 @@ export const Route = createFileRoute("/blog/$slug")({
       title: loaderData ? `${loaderData.title} | Signet` : "Signet",
       description: loaderData?.excerpt ?? "",
     }),
-  component: function Post() {
-    return <BlogPostPage post={Route.useLoaderData()} />;
-  },
+  component: BlogPostContainer,
 });

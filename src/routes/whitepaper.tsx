@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { WhitepaperPage } from "@/components/pages/whitepaper-page";
+import { WhitepaperContainer } from "@/modules/whitepaper";
 import { pageHead } from "@/utils";
 import { whitepaper } from "@/content/pages/whitepaper";
 
 export const Route = createFileRoute("/whitepaper")({
   head: () => pageHead(whitepaper.meta),
-  component: WhitepaperPage,
+  component: WhitepaperContainer,
 });

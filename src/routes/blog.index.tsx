@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BlogPage } from "@/components/pages/blog-page";
+import { BlogContainer } from "@/modules/blog";
 import { pageHead } from "@/utils";
 import { blogPage } from "@/content/pages/blog";
 import { getPosts } from "@/lib/content";
@@ -7,7 +7,5 @@ import { getPosts } from "@/lib/content";
 export const Route = createFileRoute("/blog/")({
   head: () => pageHead(blogPage.meta),
   loader: () => getPosts(),
-  component: function Blog() {
-    return <BlogPage posts={Route.useLoaderData()} />;
-  },
+  component: BlogContainer,
 });
