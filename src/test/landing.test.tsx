@@ -96,11 +96,12 @@ describe("landing-page/AC-7: mobile menu", () => {
 });
 
 describe("landing-page/AC-8: theme toggle", () => {
-  it("turns on .dark from the nav and remembers it", () => {
+  it("turns off .dark from the nav and remembers it", () => {
     renderLanding();
-    fireEvent.click(screen.getByRole("button", { name: "Switch to dark theme" }));
     expect(document.documentElement.classList.contains("dark")).toBe(true);
-    expect(localStorage.getItem("trellis-theme")).toBe("dark");
+    fireEvent.click(screen.getByRole("button", { name: "Switch to light theme" }));
+    expect(document.documentElement.classList.contains("dark")).toBe(false);
+    expect(localStorage.getItem("trellis-theme-v5")).toBe("light");
   });
 });
 

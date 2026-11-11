@@ -23,17 +23,17 @@ const CliUi = ({ id, title, body, lines }: CliUiProps) => {
         {/* Always dark, like a terminal, in both themes. */}
         <pre
           aria-label="Terminal session"
-          className="min-w-0 overflow-x-auto rounded-2xl bg-overlay p-6 font-mono text-sm leading-7 text-[#f5f7f9]"
+          className="min-w-0 overflow-x-auto rounded-2xl bg-overlay p-6 font-mono text-sm leading-7 text-[#f4f7f8]"
         >
           {lines.map((l) => (
             <code key={l.text} className="block">
               <span
                 className={cn(
-                  l.kind === "command" ? "text-[#f5f7f9]" : "text-[#9ea3ad]",
-                  l.kind === "result" && "text-[#8ecaed]",
+                  l.kind === "command" ? "text-[#f4f7f8]" : "text-[#a6b3b5]",
+                  l.kind === "result" && "text-[#60f2ff]",
                 )}
               >
-                {l.kind === "command" && <span className="text-[#6ea1ff]">$ </span>}
+                {l.kind === "command" && <span className="text-[#60f2ff]">$ </span>}
                 {l.text}
               </span>
             </code>

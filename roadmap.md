@@ -51,3 +51,4 @@
 - [x] Signet lockup (light/dark), sample copy in `src/content/landing.ts`, sample OG image and meta.
 - [x] Light/dark toggle without flash; reduced-motion fallbacks.
 - [ ] Real links, partner logos, legal text and domain-based OG URL (placeholders for now).
+- [x] Brand kit v5 palette (deep teal and cyan, dark by default) across tokens, theme script, design-kit and brand-kit; logo and icons unchanged.

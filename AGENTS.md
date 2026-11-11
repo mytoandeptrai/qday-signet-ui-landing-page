@@ -21,6 +21,7 @@ One-page marketing site for Signet (Agentic Payments); the Trellis wallet is the
 ## Design rules
 
 - Use only tokens from `src/styles.css`; no new colours.
+- Palette follows Trellis brand kit v5 (from `qday-trellis-ui-kit`): deep teal #06343a ground and cyan #60f2ff accent in dark, which is the default (`DEFAULT_THEME`, applied before paint by `themeInitScript`, stored under `trellis-theme-v5`); light uses #f4f7f8 with deep-teal primary. The Signet logo and icons stay blue and are not recoloured.
 - Inter Tight for headlines (weight 500), Inter for body, JetBrains Mono only for machine data (amounts, CLI).
 - No fade-in per section, no hover-lift cards, no numbered steps, no arrows in buttons.
 - Motion not triggered by the user is limited to: hero lattice route, ledger rows, the three-layer diagram, nav hide on scroll, partner marquee. - User-triggered motion on sub-pages: `AnimationContainer` (`src/components/animation-container.tsx`): a short fade and slide when sub-page content scrolls into view, once, staggered for card grids, the About dropdown, and filter/tab changes on Events, Blog and Media. These also stop under `prefers-reduced-motion`.

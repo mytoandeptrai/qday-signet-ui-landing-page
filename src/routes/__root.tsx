@@ -13,7 +13,7 @@ import type { ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { CommentLayer } from "@/components/comment";
 import { ScrollToTopContainer } from "@/modules/site-shell";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider, themeInitScript } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -78,17 +78,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "theme-color", content: "#f5f7f9", media: "(prefers-color-scheme: light)" },
-      { name: "theme-color", content: "#111318", media: "(prefers-color-scheme: dark)" },
+      { name: "theme-color", content: "#06343a" },
       { name: "author", content: "Signet" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-    ],
-    // Sets the theme class before first paint so a stored dark preference never flashes light.
-    scripts: [
-      {
-        children: `try{if(localStorage.getItem("trellis-theme")==="dark"){document.documentElement.classList.add("dark");document.documentElement.style.colorScheme="dark"}}catch(e){}`,
-      },
     ],
     links: [
       // The latin subsets the first screen uses, fetched in parallel with the CSS so the
@@ -104,7 +97,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         type: "font/woff2",
         crossOrigin: "anonymous" as const,
       })),
-      // Brand kit v4 fonts (Inter Tight, Inter, JetBrains Mono), self-hosted from /public/fonts.
+      // Brand kit v5 fonts (Inter Tight, Inter, JetBrains Mono), self-hosted from /public/fonts.
       { rel: "stylesheet", href: "/fonts/fonts.css" },
       {
         rel: "stylesheet",
@@ -124,9 +117,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" style={{ colorScheme: "dark" }} suppressHydrationWarning>
       <head>
         <HeadContent />
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body>
         {children}
