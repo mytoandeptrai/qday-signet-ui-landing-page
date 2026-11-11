@@ -8,7 +8,7 @@ type PageShellContainerProps = {
 
 /** Frame shared by every sub-page: nav, footer. */
 const PageShellContainer = ({ children }: PageShellContainerProps) => (
-  <div className="min-h-dvh bg-background text-foreground">
+  <div className="min-h-dvh text-foreground">
     <NavContainer />
     <main>{children}</main>
     <FooterContainer />

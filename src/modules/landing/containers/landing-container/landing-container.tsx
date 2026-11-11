@@ -7,7 +7,7 @@ import LogosContainer from "../logos-container";
 
 const LandingContainer = () => {
   return (
-    <div className="min-h-dvh bg-background text-foreground">
+    <div className="min-h-dvh text-foreground">
       <NavContainer />
       <main>
         <HeroContainer />
